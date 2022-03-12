@@ -23,9 +23,19 @@ public class Person implements Serializable {
     private long id;
 
     @Basic
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Basic
+    @Column(nullable = false)
+    private String password;
+
+    @Basic
+    @Column(nullable = false)
     private String lastName;
 
     @Basic
+    @Column(nullable = false)
     private String firstName;
 
     @Basic
@@ -33,13 +43,7 @@ public class Person implements Serializable {
     private Date birthday;
 
     @Basic
-    private String email;
-
-    @Basic
     private String website;
-
-    @Basic
-    private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -50,8 +54,10 @@ public class Person implements Serializable {
     @ToString.Exclude
     private Set<Group> groups;
 
-    public Person(String firstName, String lastName) {
+    public Person(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.password = password;
     }
 }

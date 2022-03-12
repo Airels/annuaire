@@ -1,129 +1,70 @@
-/*C12*/SET SCHEMA PUBLIC
+/*C22*/SET SCHEMA PUBLIC
+drop table if exists groups CASCADE 
 drop table if exists person CASCADE 
 drop table if exists person_group CASCADE 
-drop table if exists work_group CASCADE 
 drop sequence hibernate_sequence if exists
 create sequence hibernate_sequence start with 1 increment by 1
-create table person (id bigint not null, birthday date, email varchar(255), first_name varchar(255), last_name varchar(255), password varchar(255), website varchar(255), primary key (id))
+create table groups (id bigint not null, name varchar(255), primary key (id))
+create table person (id bigint not null, birthday date, email varchar(255) not null, first_name varchar(255) not null, last_name varchar(255) not null, password varchar(255) not null, website varchar(255), primary key (id))
 create table person_group (id_person bigint not null, id_group bigint not null, primary key (id_group, id_person))
-create table work_group (id bigint not null, name varchar(255), primary key (id))
-alter table person_group add constraint FKipqt27c0of7e3cvkd4g2aw6qx foreign key (id_group) references work_group
+alter table person add constraint UK_fwmwi44u55bo4rvwsv0cln012 unique (email)
+alter table person_group add constraint FK5iv74x72qkboiei1c0c3c1ppn foreign key (id_group) references groups
 alter table person_group add constraint FK6xko2hf41rgno1v8bx4dxj9tl foreign key (id_person) references person
-INSERT INTO PERSON VALUES(1,NULL,NULL,'test','one',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
-COMMIT
-INSERT INTO PERSON VALUES(2,NULL,NULL,'test','two',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
-COMMIT
-INSERT INTO PERSON VALUES(3,NULL,NULL,'test','three',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
-COMMIT
-DELETE FROM PERSON WHERE ID=1
-INSERT INTO PERSON VALUES(1,NULL,NULL,'test','toto',NULL,NULL)
-COMMIT
-DELETE FROM PERSON WHERE ID=1
-DELETE FROM PERSON WHERE ID=2
-DELETE FROM PERSON WHERE ID=3
-COMMIT
-INSERT INTO PERSON VALUES(4,NULL,NULL,'test','one',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
-COMMIT
-INSERT INTO PERSON VALUES(5,NULL,NULL,'test','two',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
-COMMIT
-INSERT INTO PERSON VALUES(6,NULL,NULL,'test','three',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
-COMMIT
-DELETE FROM PERSON WHERE ID=4
-DELETE FROM PERSON WHERE ID=5
-DELETE FROM PERSON WHERE ID=6
-COMMIT
-INSERT INTO PERSON VALUES(7,NULL,NULL,'test','one',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
-COMMIT
-INSERT INTO PERSON VALUES(8,NULL,NULL,'test','two',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
-COMMIT
-INSERT INTO PERSON VALUES(9,NULL,NULL,'test','three',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
-COMMIT
-DELETE FROM PERSON WHERE ID=7
-COMMIT
-DELETE FROM PERSON WHERE ID=8
-DELETE FROM PERSON WHERE ID=9
-COMMIT
-INSERT INTO PERSON VALUES(10,NULL,NULL,'test','one',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
-COMMIT
-INSERT INTO PERSON VALUES(11,NULL,NULL,'test','two',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 12
-COMMIT
-INSERT INTO PERSON VALUES(12,NULL,NULL,'test','three',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 13
-COMMIT
-INSERT INTO PERSON VALUES(13,NULL,NULL,'ali','baba',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 14
-COMMIT
-DELETE FROM PERSON WHERE ID=10
-DELETE FROM PERSON WHERE ID=11
-DELETE FROM PERSON WHERE ID=12
-DELETE FROM PERSON WHERE ID=13
-COMMIT
-INSERT INTO PERSON VALUES(14,NULL,NULL,'test','one',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 15
-COMMIT
-INSERT INTO PERSON VALUES(15,NULL,NULL,'test','two',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 16
-COMMIT
-INSERT INTO PERSON VALUES(16,NULL,NULL,'test','three',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 17
-COMMIT
-DELETE FROM PERSON WHERE ID=14
-DELETE FROM PERSON WHERE ID=15
-DELETE FROM PERSON WHERE ID=16
-COMMIT
-INSERT INTO PERSON VALUES(17,NULL,NULL,'test','one',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 18
-COMMIT
-INSERT INTO PERSON VALUES(18,NULL,NULL,'test','two',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 19
-COMMIT
-INSERT INTO PERSON VALUES(19,NULL,NULL,'test','three',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 20
-COMMIT
-DELETE FROM PERSON WHERE ID=17
-DELETE FROM PERSON WHERE ID=18
-DELETE FROM PERSON WHERE ID=19
-COMMIT
-INSERT INTO PERSON VALUES(20,NULL,NULL,'test','one',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 21
-COMMIT
-INSERT INTO PERSON VALUES(21,NULL,NULL,'test','two',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 22
-COMMIT
-INSERT INTO PERSON VALUES(22,NULL,NULL,'test','three',NULL,NULL)
-ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 23
-COMMIT
+drop table if exists groups CASCADE 
 drop table if exists person CASCADE 
 drop table if exists person_group CASCADE 
-drop table if exists work_group CASCADE 
 drop sequence hibernate_sequence if exists
 DISCONNECT
-/*C13*/SET SCHEMA PUBLIC
+/*C23*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C14*/SET SCHEMA PUBLIC
+/*C24*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C15*/SET SCHEMA PUBLIC
+/*C25*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C16*/SET SCHEMA PUBLIC
+/*C26*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C17*/SET SCHEMA PUBLIC
+/*C27*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C18*/SET SCHEMA PUBLIC
+/*C28*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C19*/SET SCHEMA PUBLIC
+/*C29*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C20*/SET SCHEMA PUBLIC
+/*C30*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C21*/SET SCHEMA PUBLIC
+/*C31*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C32*/SET SCHEMA PUBLIC
+drop table if exists groups CASCADE 
+drop table if exists person CASCADE 
+drop table if exists person_group CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table groups (id bigint not null, name varchar(255), primary key (id))
+create table person (id bigint not null, birthday date, email varchar(255) not null, first_name varchar(255) not null, last_name varchar(255) not null, password varchar(255) not null, website varchar(255), primary key (id))
+create table person_group (id_person bigint not null, id_group bigint not null, primary key (id_group, id_person))
+alter table person add constraint UK_fwmwi44u55bo4rvwsv0cln012 unique (email)
+alter table person_group add constraint FK5iv74x72qkboiei1c0c3c1ppn foreign key (id_group) references groups
+alter table person_group add constraint FK6xko2hf41rgno1v8bx4dxj9tl foreign key (id_person) references person
+drop table if exists groups CASCADE 
+drop table if exists person CASCADE 
+drop table if exists person_group CASCADE 
+drop sequence hibernate_sequence if exists
+DISCONNECT
+/*C33*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C34*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C35*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C36*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C37*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C38*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C39*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C40*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C41*/SET SCHEMA PUBLIC
 DISCONNECT

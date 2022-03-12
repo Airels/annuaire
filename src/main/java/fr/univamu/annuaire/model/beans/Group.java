@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "work_group")
+@Table(name = "Groups")
 @Data
 @NoArgsConstructor
 public class Group implements Serializable {

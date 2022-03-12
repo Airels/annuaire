@@ -1,9 +1,8 @@
-package fr.univamu.annuaire.model.dao;
+package fr.univamu.annuaire.model.repository;
 
+import fr.univamu.annuaire.model.beans.Group;
 import fr.univamu.annuaire.model.beans.Person;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,15 +14,18 @@ class PersonRepositoryTest {
     @Autowired
     PersonRepository repository;
 
+    @Autowired
+    GroupRepository groupRepository;
+
     private Person p1, p2, p3;
 
     @BeforeEach
     public void beforeEach() {
         repository.deleteAll();
 
-        p1 = new Person("test", "one");
-        p2 = new Person("test", "two");
-        p3 = new Person("test", "three");
+        p1 = new Person("test", "one", "email@out", "123");
+        p2 = new Person("test", "two", "email@goo", "321");
+        p3 = new Person("test", "three", "email@amu", "323");
 
         repository.save(p1);
         repository.save(p2);
@@ -32,7 +34,7 @@ class PersonRepositoryTest {
 
     @Test
     public void testSavePerson() {
-        Person p1 = new Person("ali", "baba");
+        Person p1 = new Person("ali", "baba", "ali@baba", "666");
         repository.save(p1);
 
         Person p2 = repository.findById(p1.getId()).get();
@@ -65,6 +67,11 @@ class PersonRepositoryTest {
     }
 
     @Test
+    void findByEmail() {
+        Assertions.assertEquals(p1.getFirstName(), repository.findByEmail(p1.getEmail()).getFirstName());
+    }
+
+    @Test
     void findByFirstNameLike() {
         List<Person> persons = repository.findByFirstNameLike("t%");
         Assertions.assertEquals(3, persons.size());
@@ -81,10 +88,25 @@ class PersonRepositoryTest {
 
     @Test
     void findByLastNameLike() {
-        List<Person> persons = repository.findByFirstNameLike("%t%");
+        List<Person> persons = repository.findByLastNameLike("t%");
+        Assertions.assertEquals(2, persons.size());
+
+        persons = repository.findByLastNameLike("%e");
+        Assertions.assertEquals(2, persons.size());
+    }
+
+    @Test
+    void findByGroupsContaining() {
+        Group g = new Group("group1");
+        g.addPerson(p1);
+        g.addPerson(p2);
+        g.addPerson(p3);
+
+        groupRepository.save(g);
+
+        List<Person> persons = repository.findByGroupsContaining(g);
         Assertions.assertEquals(3, persons.size());
 
-        persons = repository.findByFirstNameLike("truc");
-        Assertions.assertEquals(0, persons.size());
+        groupRepository.deleteAll();
     }
 }
