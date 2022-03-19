@@ -5,7 +5,9 @@ import fr.univamu.annuaire.model.repository.PersonRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest
 class LoginServiceTest {
 
     @Autowired
@@ -19,8 +21,8 @@ class LoginServiceTest {
         Person p = new Person("jean", "michel", "jean.michel@mail.co", "passwd");
         personRepository.save(p);
 
-        Assertions.assertTrue(loginService.login(p.getEmail(), p.getPassword()));
-        Assertions.assertFalse(loginService.login("noemail@noemail.co", p.getPassword()));
-        Assertions.assertFalse(loginService.login(p.getEmail(), "wrongPasswd"));
+        Assertions.assertNotNull(loginService.login(p.getEmail(), p.getPassword()));
+        Assertions.assertNull(loginService.login("noemail@noemail.co", p.getPassword()));
+        Assertions.assertNull(loginService.login(p.getEmail(), "wrongPasswd"));
     }
 }

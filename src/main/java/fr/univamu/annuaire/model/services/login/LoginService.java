@@ -1,6 +1,10 @@
 package fr.univamu.annuaire.model.services.login;
 
+import fr.univamu.annuaire.model.beans.Person;
+
 public interface LoginService {
 
-    boolean login(String email, String password);
+    Person login(String email, String password);
+
+    void logout();
 }
