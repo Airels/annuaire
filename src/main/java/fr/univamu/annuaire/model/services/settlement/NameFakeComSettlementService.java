@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
 
 /**
  * Settlement Service using https://api.namefake.com to generate random users
+ * Deprecated: Used a more generic approach
+ * @see GenericSettlementService
  */
 @Service("nameFakeComSettlementService")
 @Transactional
