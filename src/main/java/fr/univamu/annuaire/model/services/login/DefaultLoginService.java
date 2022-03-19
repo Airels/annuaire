@@ -14,11 +14,21 @@ public class DefaultLoginService implements LoginService {
     private PersonRepository personRepository;
 
     @Override
-    public boolean login(String email, String password) {
+    public Person login(String email, String password) {
         Person p = personRepository.findByEmail(email);
 
-        if (p == null) return false;
+        if (p == null) return null;
 
-        return (p.getPassword().equals(password));
+        return (p.getPassword().equals(password)) ? p : null;
     }
+
+    @Override
+    public void logout() {
+        // TODO
+        // Will probably reset session cache in the future, not useful yet
+        System.err.println("LOGOUT NOT IMPLEMENTED");
+        System.exit(503);
+    }
+
+
 }
