@@ -24,6 +24,7 @@ public class Group implements Serializable {
     private long id;
 
     @Basic
+    @Column(nullable = false, unique = true)
     private String name;
 
     public Group(String name) {
