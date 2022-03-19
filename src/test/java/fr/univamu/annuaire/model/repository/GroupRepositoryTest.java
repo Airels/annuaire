@@ -31,6 +31,12 @@ class GroupRepositoryTest {
     }
 
     @Test
+    void findByName() {
+        repository.save(g1);
+        Assertions.assertEquals(g1.getId(), repository.findByName(g1.getName()).getId());
+    }
+
+    @Test
     void findByPersonsContaining() {
         Person p1 = new Person("test", "one", "email@out", "123");
         Person p2 = new Person("test", "two", "email@goo", "321");
