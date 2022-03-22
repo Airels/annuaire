@@ -1,7 +1,7 @@
-package fr.univamu.annuaire.model.services.updater;
+package fr.univamu.annuaire.services.updater;
 
-import fr.univamu.annuaire.model.beans.Group;
-import fr.univamu.annuaire.model.beans.Person;
+import fr.univamu.annuaire.model.Group;
+import fr.univamu.annuaire.model.Person;
 
 public interface UpdaterService {
 

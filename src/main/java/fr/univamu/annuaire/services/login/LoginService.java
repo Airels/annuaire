@@ -1,6 +1,6 @@
-package fr.univamu.annuaire.model.services.login;
+package fr.univamu.annuaire.services.login;
 
-import fr.univamu.annuaire.model.beans.Person;
+import fr.univamu.annuaire.model.Person;
 
 public interface LoginService {
 

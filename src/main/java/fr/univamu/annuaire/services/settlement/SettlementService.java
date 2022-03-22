@@ -1,4 +1,4 @@
-package fr.univamu.annuaire.model.services.settlement;
+package fr.univamu.annuaire.services.settlement;
 
 import java.net.MalformedURLException;
 

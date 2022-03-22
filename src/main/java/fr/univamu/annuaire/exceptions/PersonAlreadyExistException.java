@@ -1,6 +1,6 @@
 package fr.univamu.annuaire.exceptions;
 
-import fr.univamu.annuaire.model.beans.Person;
+import fr.univamu.annuaire.model.Person;
 
 public class PersonAlreadyExistException extends Exception {
 

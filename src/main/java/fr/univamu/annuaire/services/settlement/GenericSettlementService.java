@@ -1,9 +1,9 @@
-package fr.univamu.annuaire.model.services.settlement;
+package fr.univamu.annuaire.services.settlement;
 
-import fr.univamu.annuaire.model.beans.Group;
-import fr.univamu.annuaire.model.beans.Person;
-import fr.univamu.annuaire.model.repository.GroupRepository;
-import fr.univamu.annuaire.model.repository.PersonRepository;
+import fr.univamu.annuaire.model.Group;
+import fr.univamu.annuaire.model.Person;
+import fr.univamu.annuaire.repository.GroupRepository;
+import fr.univamu.annuaire.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataRetrievalFailureException;

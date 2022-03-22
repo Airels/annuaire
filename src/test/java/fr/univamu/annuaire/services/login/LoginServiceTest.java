@@ -1,7 +1,8 @@
-package fr.univamu.annuaire.model.services.login;
+package fr.univamu.annuaire.services.login;
 
-import fr.univamu.annuaire.model.beans.Person;
-import fr.univamu.annuaire.model.repository.PersonRepository;
+import fr.univamu.annuaire.model.Person;
+import fr.univamu.annuaire.repository.PersonRepository;
+import fr.univamu.annuaire.services.login.LoginService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

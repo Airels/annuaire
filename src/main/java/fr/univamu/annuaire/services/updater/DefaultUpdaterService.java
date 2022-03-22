@@ -1,19 +1,17 @@
-package fr.univamu.annuaire.model.services.updater;
+package fr.univamu.annuaire.services.updater;
 
 import fr.univamu.annuaire.exceptions.GroupAlreadyExistException;
 import fr.univamu.annuaire.exceptions.GroupNotExistException;
 import fr.univamu.annuaire.exceptions.PersonAlreadyExistException;
 import fr.univamu.annuaire.exceptions.PersonNotExistException;
-import fr.univamu.annuaire.model.beans.Group;
-import fr.univamu.annuaire.model.beans.Person;
-import fr.univamu.annuaire.model.repository.GroupRepository;
-import fr.univamu.annuaire.model.repository.PersonRepository;
-import fr.univamu.annuaire.model.services.settlement.SettlementService;
+import fr.univamu.annuaire.model.Group;
+import fr.univamu.annuaire.model.Person;
+import fr.univamu.annuaire.repository.GroupRepository;
+import fr.univamu.annuaire.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service("defaultUpdaterService")

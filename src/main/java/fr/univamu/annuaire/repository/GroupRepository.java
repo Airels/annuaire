@@ -1,7 +1,7 @@
-package fr.univamu.annuaire.model.repository;
+package fr.univamu.annuaire.repository;
 
-import fr.univamu.annuaire.model.beans.Group;
-import fr.univamu.annuaire.model.beans.Person;
+import fr.univamu.annuaire.model.Group;
+import fr.univamu.annuaire.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

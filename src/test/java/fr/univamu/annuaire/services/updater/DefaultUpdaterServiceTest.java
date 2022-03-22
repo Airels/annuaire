@@ -1,13 +1,14 @@
-package fr.univamu.annuaire.model.services.updater;
+package fr.univamu.annuaire.services.updater;
 
 import fr.univamu.annuaire.exceptions.GroupAlreadyExistException;
 import fr.univamu.annuaire.exceptions.GroupNotExistException;
 import fr.univamu.annuaire.exceptions.PersonAlreadyExistException;
 import fr.univamu.annuaire.exceptions.PersonNotExistException;
-import fr.univamu.annuaire.model.beans.Group;
-import fr.univamu.annuaire.model.beans.Person;
-import fr.univamu.annuaire.model.repository.GroupRepository;
-import fr.univamu.annuaire.model.repository.PersonRepository;
+import fr.univamu.annuaire.model.Group;
+import fr.univamu.annuaire.model.Person;
+import fr.univamu.annuaire.repository.GroupRepository;
+import fr.univamu.annuaire.repository.PersonRepository;
+import fr.univamu.annuaire.services.updater.UpdaterService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

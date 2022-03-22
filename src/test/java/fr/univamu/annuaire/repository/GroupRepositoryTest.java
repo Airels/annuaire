@@ -1,7 +1,9 @@
-package fr.univamu.annuaire.model.repository;
+package fr.univamu.annuaire.repository;
 
-import fr.univamu.annuaire.model.beans.Group;
-import fr.univamu.annuaire.model.beans.Person;
+import fr.univamu.annuaire.model.Group;
+import fr.univamu.annuaire.model.Person;
+import fr.univamu.annuaire.repository.GroupRepository;
+import fr.univamu.annuaire.repository.PersonRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

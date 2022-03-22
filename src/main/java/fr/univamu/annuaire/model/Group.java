@@ -1,4 +1,4 @@
-package fr.univamu.annuaire.model.beans;
+package fr.univamu.annuaire.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

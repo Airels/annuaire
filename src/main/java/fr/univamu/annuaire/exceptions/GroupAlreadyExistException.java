@@ -1,7 +1,6 @@
 package fr.univamu.annuaire.exceptions;
 
-import fr.univamu.annuaire.model.beans.Group;
-import fr.univamu.annuaire.model.beans.Person;
+import fr.univamu.annuaire.model.Group;
 
 public class GroupAlreadyExistException extends Exception {
 
