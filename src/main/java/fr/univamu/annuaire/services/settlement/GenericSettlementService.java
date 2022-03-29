@@ -4,23 +4,28 @@ import fr.univamu.annuaire.model.Group;
 import fr.univamu.annuaire.model.Person;
 import fr.univamu.annuaire.repository.GroupRepository;
 import fr.univamu.annuaire.repository.PersonRepository;
+import fr.univamu.annuaire.services.logger.LoggerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import javax.annotation.PostConstruct;
 import java.util.Optional;
 import java.util.Random;
 
 @Service("genericSettlementService")
-@Transactional
 public class GenericSettlementService implements SettlementService {
 
     @Autowired
-    PersonRepository personRepository;
+    private PersonRepository personRepository;
+
     @Autowired
-    GroupRepository groupRepository;
+    private GroupRepository groupRepository;
+
+    @Autowired
+    private LoggerService logger;
+
     private int nbOfPersons, nbOfGroups, maxNbOfUsersPerGroup;
 
     public GenericSettlementService(
@@ -30,6 +35,13 @@ public class GenericSettlementService implements SettlementService {
         this.nbOfPersons = nbOfPersonsToGenerate;
         this.nbOfGroups = nbOfGroupsToGenerate;
         this.maxNbOfUsersPerGroup = maxNbOfPersonsPerGroup;
+    }
+
+    @PostConstruct
+    public void settle() throws Exception {
+        logger.info("Populating database...");
+        populateDatabase();
+        logger.info("Data population done.");
     }
 
     @Override
