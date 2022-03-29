@@ -15,6 +15,6 @@ class GenericSettlementServiceTest {
 
     @Test
     void populateDatabase() throws Exception {
-        genericSettlementService.populateDatabase();
+        // genericSettlementService.populateDatabase();
     }
 }

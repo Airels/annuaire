@@ -96,19 +96,4 @@ class PersonRepositoryTest {
         persons = repository.findByLastNameLike("%e");
         Assertions.assertEquals(2, persons.size());
     }
-
-    @Test
-    void findByGroupsContaining() {
-        Group g = new Group("group1");
-        g.addPerson(p1);
-        g.addPerson(p2);
-        g.addPerson(p3);
-
-        groupRepository.save(g);
-
-        List<Person> persons = repository.findByGroupsContaining(g);
-        Assertions.assertEquals(3, persons.size());
-
-        groupRepository.deleteAll();
-    }
 }
