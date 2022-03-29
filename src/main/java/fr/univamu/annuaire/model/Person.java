@@ -45,15 +45,6 @@ public class Person implements Serializable {
     @Basic
     private String website;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "Person_Group",
-            joinColumns = { @JoinColumn(name = "id_person") },
-            inverseJoinColumns = { @JoinColumn(name = "id_group") }
-    )
-    @ToString.Exclude
-    private Set<Group> groups;
-
     public Person(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
