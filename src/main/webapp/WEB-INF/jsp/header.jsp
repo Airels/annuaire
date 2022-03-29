@@ -2,6 +2,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<fmt:setBundle basename="jsp_view" />
+
 <c:url var="bootstrap_css"
        value="/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css" />
 <c:url var="bootstrap_js"
