@@ -31,7 +31,7 @@ public class Group implements Serializable {
         this.name = name;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "Person_Group",
             inverseJoinColumns = { @JoinColumn(name = "id_person") },
