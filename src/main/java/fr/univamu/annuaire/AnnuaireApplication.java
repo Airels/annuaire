@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -33,5 +36,12 @@ public class AnnuaireApplication extends SpringBootServletInitializer implements
         System.out.println("--- addResourceHandlers");
         registry.addResourceHandler("/webjars/**")//
                 .addResourceLocations("/webjars/");
+    }
+
+    @Bean("messageSource")
+    public MessageSource messageSource() {
+        var r = new ReloadableResourceBundleMessageSource();
+        r.setBasenames("classpath:jsp_view");
+        return r;
     }
 }
