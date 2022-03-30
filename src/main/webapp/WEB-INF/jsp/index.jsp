@@ -11,14 +11,7 @@
         <div class="col-12 jumbotron">
             <div class="row mb-2">
                 <div class="col-12">
-                    <form method="GET" action="#">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="John Doe, AMU Information..." required />
-                            <div class="input-group-append">
-                                <input type="submit" class="btn btn-primary" value="<fmt:message key="jsp_view.index.button.search" />" />
-                            </div>
-                        </div>
-                    </form>
+                    <%@ include file="/WEB-INF/jsp/components/global_search_form.jsp"%>
                 </div>
             </div>
 
@@ -32,8 +25,8 @@
 
             <div class="row">
                 <div class="col-12 text-center">
-                    <a class="btn btn-secondary w-25" href="#"><fmt:message key="jsp_view.index.button.show_all_users" /></a>
-                    <a class="btn btn-secondary w-25" href="#"><fmt:message key="jsp_view.index.button.show_all_groups" /></a>
+                    <a class="btn btn-secondary w-25" href="/person"><fmt:message key="jsp_view.index.button.show_all_users" /></a>
+                    <a class="btn btn-secondary w-25" href="/group"><fmt:message key="jsp_view.index.button.show_all_groups" /></a>
                 </div>
             </div>
         </div>
