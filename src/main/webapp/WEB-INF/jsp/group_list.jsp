@@ -4,7 +4,7 @@
     <%@ include file="/WEB-INF/jsp/components/header_banner.jsp"%>
 
     <div class="jumbotron">
-        <h1>All groups</h1>
+        <h1><fmt:message key="jsp_view.groups.all" /></h1>
 
         <ul>
             <c:forEach items="${groups}" var="group">
