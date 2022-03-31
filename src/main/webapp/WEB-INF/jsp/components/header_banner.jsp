@@ -1,4 +1,4 @@
-<div class="row my-4">
+<div class="row my-4 align-items-center">
     <div class="col-3">
         <h3>
             <a href="/"><fmt:message key="jsp_view.index.title" /></a>
