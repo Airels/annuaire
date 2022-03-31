@@ -16,6 +16,8 @@ public class SpringWebSecurity extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/**")
-                .permitAll();
+                .permitAll()
+                .and().formLogin().permitAll()
+                .and().logout().permitAll();
     }
 }
