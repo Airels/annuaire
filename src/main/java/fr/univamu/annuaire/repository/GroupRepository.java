@@ -17,7 +17,7 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
 
     Group findByName(String name);
 
-    List<Group> findByNameLike(String name);
+    List<Group> findByNameLikeIgnoreCase(String name);
 
     List<Group> findByPersonsContaining(Person p);
 }
