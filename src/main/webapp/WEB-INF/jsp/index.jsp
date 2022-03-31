@@ -23,7 +23,7 @@
                         <a class="btn btn-primary w-25 disabled" href="#"><fmt:message key="jsp_view.index.button.register" /></a>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
-                        <a class="btn btn-primary w-25" href="/person/<c:out value='${person.id}' />"><fmt:message key="jsp_view.index.button.user_profile" /></a>
+                        <a class="btn btn-primary w-25" href="/person/<c:out value='${sessionScope.user.id}' />"><fmt:message key="jsp_view.index.button.user_profile" /></a>
                         <a class="btn btn-primary w-25" href="/logout"><fmt:message key="jsp_view.index.button.logout" /></a>
                     </sec:authorize>
                 </div>
