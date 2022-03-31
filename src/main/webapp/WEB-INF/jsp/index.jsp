@@ -18,8 +18,13 @@
             <div class="row mb-2">
                 <div class="col-12 text-center">
                     <a class="btn btn-info w-25" href="#"><fmt:message key="jsp_view.index.button.advanced_search" /></a>
-                    <a class="btn btn-primary w-25" href="#"><fmt:message key="jsp_view.index.button.login" /></a>
-                    <a class="btn btn-primary w-25" href="#"><fmt:message key="jsp_view.index.button.register" /></a>
+                    <sec:authorize access="isAnonymous()">
+                        <a class="btn btn-primary w-25" href="#"><fmt:message key="jsp_view.index.button.login" /></a>
+                        <a class="btn btn-primary w-25" href="#"><fmt:message key="jsp_view.index.button.register" /></a>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <a class="btn btn-primary w-50" href="#"><fmt:message key="jsp_view.index.button.logout" /></a>
+                    </sec:authorize>
                 </div>
             </div>
 
