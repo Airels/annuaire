@@ -2,6 +2,7 @@ package fr.univamu.annuaire.services.settlement;
 
 import fr.univamu.annuaire.model.Group;
 import fr.univamu.annuaire.model.Person;
+import fr.univamu.annuaire.model.SpringRoles;
 import fr.univamu.annuaire.repository.GroupRepository;
 import fr.univamu.annuaire.repository.PersonRepository;
 import fr.univamu.annuaire.services.logger.LoggerService;
@@ -34,6 +35,10 @@ public class GenericSettlementService implements SettlementService {
     @Autowired
     @Qualifier("passwordEncoder")
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    @Qualifier("defaultPersonRole")
+    private SpringRoles defaultPersonRole;
 
     private int nbOfPersons, nbOfGroups, maxNbOfUsersPerGroup;
 
@@ -70,6 +75,7 @@ public class GenericSettlementService implements SettlementService {
                 Person p = new Person("John" + finalI, "Doe" + finalI, "john.doe." + finalI + "@foo", passwordEncoder.encode("password" + finalI));
                 p.setWebsite("http://fakewebsitejohndoe" + finalI + ".com");
                 p.setBirthday(new Date(r.nextInt()));
+                p.addRole(defaultPersonRole);
 
                 return p;
             });

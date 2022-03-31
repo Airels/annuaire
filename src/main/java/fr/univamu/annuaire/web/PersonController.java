@@ -46,6 +46,8 @@ public class PersonController {
         result.addObject("person", person);
         result.addObject("groups", groupsOfPerson);
 
+        System.out.println(person.getRoles());
+
         return result;
     }
 }
