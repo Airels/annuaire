@@ -1,9 +1,6 @@
 package fr.univamu.annuaire.repository;
 
-import fr.univamu.annuaire.model.Group;
 import fr.univamu.annuaire.model.Person;
-import fr.univamu.annuaire.repository.GroupRepository;
-import fr.univamu.annuaire.repository.PersonRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -75,10 +72,10 @@ class PersonRepositoryTest {
 
     @Test
     void findByFirstNameLike() {
-        List<Person> persons = repository.findByFirstNameLike("t%");
+        List<Person> persons = repository.findByFirstNameLikeIgnoreCase("t%");
         Assertions.assertEquals(3, persons.size());
 
-        persons = repository.findByFirstNameLike("%a%");
+        persons = repository.findByFirstNameLikeIgnoreCase("%a%");
         Assertions.assertEquals(0, persons.size());
     }
 
@@ -90,10 +87,10 @@ class PersonRepositoryTest {
 
     @Test
     void findByLastNameLike() {
-        List<Person> persons = repository.findByLastNameLike("t%");
+        List<Person> persons = repository.findByLastNameLikeIgnoreCase("t%");
         Assertions.assertEquals(2, persons.size());
 
-        persons = repository.findByLastNameLike("%e");
+        persons = repository.findByLastNameLikeIgnoreCase("%e");
         Assertions.assertEquals(2, persons.size());
     }
 }

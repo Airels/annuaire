@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -31,9 +30,9 @@ public class SearchController {
 
         query = "%" + query + "%";
 
-        List<Person> persons = personRepository.findByFirstNameLike(query);
-        persons.addAll(personRepository.findByLastNameLike(query));
-        List<Group> groups = groupRepository.findByNameLike(query);
+        List<Person> persons = personRepository.findByFirstNameLikeIgnoreCase(query);
+        persons.addAll(personRepository.findByLastNameLikeIgnoreCase(query));
+        List<Group> groups = groupRepository.findByNameLikeIgnoreCase(query);
 
         result.addObject("persons", new LinkedHashSet<>(persons));
         result.addObject("groups", new LinkedHashSet<>(groups));
