@@ -48,9 +48,13 @@ public class GenericSettlementService implements SettlementService {
 
     @PostConstruct
     public void settle() throws Exception {
+        long start, end;
+
         logger.info("Populating database...");
+        start = System.currentTimeMillis();
         populateDatabase();
-        logger.info("Data population done.");
+        end = System.currentTimeMillis();
+        logger.info(String.format("Data population done. (%d ms)", end - start));
     }
 
     @Override
