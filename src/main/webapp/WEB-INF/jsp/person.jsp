@@ -8,13 +8,13 @@
         <h1><c:out value="${person.firstName}" /> <c:out value="${person.lastName}" /></h1>
 
         <div class="row my-4">
-            <c:if test="${person.email != null}">
+            <sec:authorize access="isAuthenticated()">
                 <span class="col"><fmt:message key="person.email" bundle="${persons_view}" />: <a href="mailto:<c:out value='${person.email}' />"><c:out value="${person.email}" /></a></span>
-            </c:if>
 
-            <c:if test="${person.birthday != null}">
-                <span class="col"><fmt:message key="person.birthday" bundle="${persons_view}" />: <c:out value="${person.birthday}" /></span>
-            </c:if>
+                <c:if test="${person.birthday != null}">
+                    <span class="col"><fmt:message key="person.birthday" bundle="${persons_view}" />: <c:out value="${person.birthday}" /></span>
+                </c:if>
+            </sec:authorize>
 
             <c:if test="${person.website != null}">
                 <span class="col"><fmt:message key="person.website" bundle="${persons_view}" />: <a href="<c:out value='${person.website}' />"><c:out value='${person.website}' /></a></span>
