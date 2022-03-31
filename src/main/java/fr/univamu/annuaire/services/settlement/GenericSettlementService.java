@@ -11,6 +11,8 @@ import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.security.Timestamp;
+import java.util.Date;
 import java.util.Optional;
 import java.util.Random;
 
@@ -46,12 +48,16 @@ public class GenericSettlementService implements SettlementService {
 
     @Override
     public void populateDatabase() throws Exception {
+        Random r = new Random();
+
         for (int i = 0; i < nbOfPersons; i++) {
             Person p = new Person("John" + i, "Doe" + i, "john.doe." + i + "@foo", "password" + i);
+            p.setWebsite("http://fakewebsitejohndoe" + i + ".com");
+            p.setBirthday(new Date(r.nextInt()));
+
             personRepository.save(p);
         }
 
-        Random r = new Random();
         for (int i = 0; i < nbOfGroups; i++) {
             Group g = new Group("group" + i);
 
