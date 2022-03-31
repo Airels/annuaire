@@ -17,7 +17,7 @@
 
             <div class="row mb-2">
                 <div class="col-12 text-center">
-                    <a class="btn btn-info w-25" href="#"><fmt:message key="jsp_view.index.button.advanced_search" /></a>
+                    <a class="btn btn-info w-25 disabled" href="#"><fmt:message key="jsp_view.index.button.advanced_search" /></a>
                     <sec:authorize access="isAnonymous()">
                         <a class="btn btn-primary w-25" href="/login"><fmt:message key="jsp_view.index.button.login" /></a>
                         <a class="btn btn-primary w-25 disabled" href="#"><fmt:message key="jsp_view.index.button.register" /></a>
