@@ -6,8 +6,10 @@ import fr.univamu.annuaire.repository.GroupRepository;
 import fr.univamu.annuaire.repository.PersonRepository;
 import fr.univamu.annuaire.services.logger.LoggerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataRetrievalFailureException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +17,7 @@ import java.security.Timestamp;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Random;
+import java.util.concurrent.*;
 
 @Service("genericSettlementService")
 public class GenericSettlementService implements SettlementService {
@@ -27,6 +30,10 @@ public class GenericSettlementService implements SettlementService {
 
     @Autowired
     private LoggerService logger;
+
+    @Autowired
+    @Qualifier("passwordEncoder")
+    private PasswordEncoder passwordEncoder;
 
     private int nbOfPersons, nbOfGroups, maxNbOfUsersPerGroup;
 
@@ -50,13 +57,24 @@ public class GenericSettlementService implements SettlementService {
     public void populateDatabase() throws Exception {
         Random r = new Random();
 
-        for (int i = 0; i < nbOfPersons; i++) {
-            Person p = new Person("John" + i, "Doe" + i, "john.doe." + i + "@foo", "password" + i);
-            p.setWebsite("http://fakewebsitejohndoe" + i + ".com");
-            p.setBirthday(new Date(r.nextInt()));
+        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        CompletionService<Person> completionService = new ExecutorCompletionService<>(executor);
 
-            personRepository.save(p);
+        for (int i = 0; i < nbOfPersons; i++) {
+            int finalI = i;
+            completionService.submit(() -> {
+                Person p = new Person("John" + finalI, "Doe" + finalI, "john.doe." + finalI + "@foo", passwordEncoder.encode("password" + finalI));
+                p.setWebsite("http://fakewebsitejohndoe" + finalI + ".com");
+                p.setBirthday(new Date(r.nextInt()));
+
+                return p;
+            });
         }
+
+        executor.shutdown();
+
+        for (int i = 0; i < nbOfPersons; i++)
+            personRepository.save(completionService.take().get());
 
         for (int i = 0; i < nbOfGroups; i++) {
             Group g = new Group("group" + i);
