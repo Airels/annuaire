@@ -41,7 +41,10 @@ public class AnnuaireApplication extends SpringBootServletInitializer implements
     @Bean("messageSource")
     public MessageSource messageSource() {
         var r = new ReloadableResourceBundleMessageSource();
-        r.setBasenames("classpath:jsp_view");
+        r.setBasenames(
+                "classpath:jsp_view",
+                "classpath:person"
+        );
         return r;
     }
 }
