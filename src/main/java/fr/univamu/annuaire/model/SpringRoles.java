@@ -2,5 +2,6 @@ package fr.univamu.annuaire.model;
 
 public enum SpringRoles {
     USER,
-    ADMIN
+    ADMIN,
+    SUPER_ADMIN
 }

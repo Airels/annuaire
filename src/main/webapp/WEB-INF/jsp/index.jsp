@@ -20,10 +20,11 @@
                     <a class="btn btn-info w-25" href="#"><fmt:message key="jsp_view.index.button.advanced_search" /></a>
                     <sec:authorize access="isAnonymous()">
                         <a class="btn btn-primary w-25" href="/login"><fmt:message key="jsp_view.index.button.login" /></a>
-                        <a class="btn btn-primary w-25" href="#"><fmt:message key="jsp_view.index.button.register" /></a>
+                        <a class="btn btn-primary w-25 disabled" href="#"><fmt:message key="jsp_view.index.button.register" /></a>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
-                        <a class="btn btn-primary w-50" href="#"><fmt:message key="jsp_view.index.button.logout" /></a>
+                        <a class="btn btn-primary w-25" href="/person/<c:out value='${person.id}' />"><fmt:message key="jsp_view.index.button.user_profile" /></a>
+                        <a class="btn btn-primary w-25" href="/logout"><fmt:message key="jsp_view.index.button.logout" /></a>
                     </sec:authorize>
                 </div>
             </div>
@@ -34,6 +35,12 @@
                     <a class="btn btn-secondary w-25" href="/group"><fmt:message key="jsp_view.index.button.show_all_groups" /></a>
                 </div>
             </div>
+
+            <sec:authorize access="isAuthenticated()">
+                <div class="row mt-4">
+                    <small><fmt:message key="jsp_view.index.label.connected_as" /> <c:out value="${sessionScope.user.firstName}" /> <c:out value="${sessionScope.user.lastName}" /></small>
+                </div>
+            </sec:authorize>
         </div>
     </div>
 </div>
