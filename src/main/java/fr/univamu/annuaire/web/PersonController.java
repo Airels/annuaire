@@ -2,14 +2,16 @@ package fr.univamu.annuaire.web;
 
 import fr.univamu.annuaire.model.Group;
 import fr.univamu.annuaire.model.Person;
+import fr.univamu.annuaire.model.PersonUpdateFormModel;
 import fr.univamu.annuaire.repository.GroupRepository;
 import fr.univamu.annuaire.repository.PersonRepository;
+import fr.univamu.annuaire.validators.PersonUpdateFormModelValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,6 +27,9 @@ public class PersonController {
 
     @Autowired
     private GroupRepository groupRepository;
+
+    @Autowired
+    private PersonUpdateFormModelValidator personFormValidator;
 
     @GetMapping()
     public ModelAndView getAll() {
@@ -47,5 +52,31 @@ public class PersonController {
         result.addObject("groups", groupsOfPerson);
 
         return result;
+    }
+
+    @GetMapping("/{id}/edit")
+    @PreAuthorize("isAuthenticated() && #id == principal.person.id")
+    public ModelAndView editProfile(@PathVariable Long id) {
+        Optional<Person> personPromise = personRepository.findById(id);
+        if (personPromise.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Person not found");
+
+        ModelAndView result = new ModelAndView("person_edit");
+        PersonUpdateFormModel person = new PersonUpdateFormModel(personPromise.get());
+
+        result.addObject("person", person);
+
+        return result;
+    }
+
+    @PostMapping("/{id}/edit")
+    @PreAuthorize("isAuthenticated() && #id == principal.person.id")
+    public String confirmEditProfilte(@PathVariable Long id, @ModelAttribute("person") PersonUpdateFormModel personUpdateForm, BindingResult result) {
+        personFormValidator.validate(personUpdateForm, result);
+        if (result.hasErrors())
+            return "person_edit";
+
+        personRepository.save(personUpdateForm.toPerson());
+        return "redirect:/person/" + id;
     }
 }
