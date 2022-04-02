@@ -1,13 +1,10 @@
 package fr.univamu.annuaire.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,6 +15,7 @@ import java.util.Set;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Person implements Serializable {
 
     @Serial
@@ -28,7 +26,7 @@ public class Person implements Serializable {
     private long id;
 
     @Basic
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, updatable = false)
     private String email;
 
     @Basic
@@ -45,6 +43,7 @@ public class Person implements Serializable {
 
     @Basic
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     @Basic
