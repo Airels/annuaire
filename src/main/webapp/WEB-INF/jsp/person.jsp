@@ -30,6 +30,10 @@
                 </c:forEach>
             </ul>
         </details>
+
+        <sec:authorize access="isAuthenticated() && #id == principal.person.id">
+            <a class="btn btn-primary mt-4 w-100" href="/person/<c:out value='${person.id}' />/edit"><fmt:message key="person.button.update" bundle="${persons_view}" /></a>
+        </sec:authorize>
     </div>
 </div>
 
