@@ -37,7 +37,7 @@
             </div>
 
             <sec:authorize access="isAuthenticated()">
-                <div class="row mt-4">
+                <div class="row mt-4 justify-content-center">
                     <small><fmt:message key="jsp_view.index.label.connected_as" /> <c:out value="${sessionScope.user.firstName}" /> <c:out value="${sessionScope.user.lastName}" /></small>
                 </div>
             </sec:authorize>
