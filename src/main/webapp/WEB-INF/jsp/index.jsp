@@ -17,22 +17,22 @@
 
             <div class="row mb-2">
                 <div class="col-12 text-center">
-                    <a class="btn btn-info w-25 disabled" href="#"><fmt:message key="jsp_view.index.button.advanced_search" /></a>
+                    <%-- <a class="btn btn-info w-25 disabled" href="#"><fmt:message key="jsp_view.index.button.advanced_search" /></a> --%>
                     <sec:authorize access="isAnonymous()">
-                        <a class="btn btn-primary w-25" href="/login"><fmt:message key="jsp_view.index.button.login" /></a>
-                        <a class="btn btn-primary w-25 disabled" href="#"><fmt:message key="jsp_view.index.button.register" /></a>
+                        <a class="btn btn-primary w-40" href="/login"><fmt:message key="jsp_view.index.button.login" /></a>
+                        <a class="btn btn-primary w-40" href="/account/resetPassword"><fmt:message key="jsp_view.index.button.reset_password" /></a>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
-                        <a class="btn btn-primary w-25" href="/person/<c:out value='${sessionScope.user.id}' />"><fmt:message key="jsp_view.index.button.user_profile" /></a>
-                        <a class="btn btn-primary w-25" href="/logout"><fmt:message key="jsp_view.index.button.logout" /></a>
+                        <a class="btn btn-primary w-40" href="/person/<c:out value='${sessionScope.user.id}' />"><fmt:message key="jsp_view.index.button.user_profile" /></a>
+                        <a class="btn btn-primary w-40" href="/logout"><fmt:message key="jsp_view.index.button.logout" /></a>
                     </sec:authorize>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-12 text-center">
-                    <a class="btn btn-secondary w-25" href="/person"><fmt:message key="jsp_view.index.button.show_all_users" /></a>
-                    <a class="btn btn-secondary w-25" href="/group"><fmt:message key="jsp_view.index.button.show_all_groups" /></a>
+                    <a class="btn btn-secondary w-40" href="/person"><fmt:message key="jsp_view.index.button.show_all_users" /></a>
+                    <a class="btn btn-secondary w-40" href="/group"><fmt:message key="jsp_view.index.button.show_all_groups" /></a>
                 </div>
             </div>
 

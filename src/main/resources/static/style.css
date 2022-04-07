@@ -31,3 +31,7 @@ details[open] summary {
     border-bottom: 1px solid #aaa;
     margin-bottom: .5em;
 }
+
+.w-40 {
+    width: 40%!important
+}
