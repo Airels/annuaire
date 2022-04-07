@@ -38,7 +38,7 @@ public class DefaultPasswordResetService implements PasswordResetService {
     @Override
     public PasswordResetToken generateToken(Person user) {
         Person person = personRepository.findByEmail(user.getEmail());
-        PasswordResetToken oldToken = tokenRepository.findByUser(person);
+        PasswordResetToken oldToken = tokenRepository.findByPerson(person);
         if (oldToken != null)
             tokenRepository.delete(oldToken);
 
@@ -48,7 +48,7 @@ public class DefaultPasswordResetService implements PasswordResetService {
 
         PasswordResetToken token = new PasswordResetToken();
         token.setToken(stringToken);
-        token.setUser(person);
+        token.setPerson(person);
         token.setExpirationDate(new Date(System.currentTimeMillis() + resetPasswordExpirationDuration * 60000));
 
         return tokenRepository.save(token);
@@ -70,12 +70,12 @@ public class DefaultPasswordResetService implements PasswordResetService {
             throw new PasswordResetTokenNotFoundException(tokenString);
 
         long now = System.currentTimeMillis();
-        long expirationDate = token.getExpirationDate().getTime() + resetPasswordExpirationDuration * 60000;
+        long expirationDate = token.getExpirationDate().getTime();
 
-        if (now > expirationDate)
+        if (now >= expirationDate)
             throw new ExpiredPasswordResetTokenException(token);
 
-        Person person = token.getUser();
+        Person person = token.getPerson();
         person.setPassword(passwordEncoder.encode(newPassword.getPassword()));
         personRepository.save(person);
 
