@@ -2,7 +2,7 @@ package fr.univamu.annuaire.web;
 
 import fr.univamu.annuaire.model.Group;
 import fr.univamu.annuaire.model.Person;
-import fr.univamu.annuaire.model.PersonUpdateFormModel;
+import fr.univamu.annuaire.model.web.PersonUpdateFormModel;
 import fr.univamu.annuaire.repository.GroupRepository;
 import fr.univamu.annuaire.repository.PersonRepository;
 import fr.univamu.annuaire.validators.PersonUpdateFormModelValidator;
@@ -71,12 +71,12 @@ public class PersonController {
 
     @PostMapping("/{id}/edit")
     @PreAuthorize("isAuthenticated() && #id == principal.person.id")
-    public String confirmEditProfilte(@PathVariable Long id, @ModelAttribute("person") PersonUpdateFormModel personUpdateForm, BindingResult result) {
-        personFormValidator.validate(personUpdateForm, result);
+    public String confirmEditProfilte(@PathVariable Long id, @ModelAttribute("person") PersonUpdateFormModel personUpdateFormModel, BindingResult result) {
+        personFormValidator.validate(personUpdateFormModel, result);
         if (result.hasErrors())
             return "person_edit";
 
-        personRepository.save(personUpdateForm.toPerson());
+        personRepository.save(personUpdateFormModel.toPerson());
         return "redirect:/person/" + id;
     }
 }

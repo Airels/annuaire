@@ -1,5 +1,6 @@
-package fr.univamu.annuaire.model;
+package fr.univamu.annuaire.model.web;
 
+import fr.univamu.annuaire.model.Person;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

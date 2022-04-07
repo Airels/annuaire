@@ -1,7 +1,7 @@
 package fr.univamu.annuaire.validators;
 
 import fr.univamu.annuaire.model.Person;
-import fr.univamu.annuaire.model.PersonUpdateFormModel;
+import fr.univamu.annuaire.model.web.PersonUpdateFormModel;
 import fr.univamu.annuaire.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

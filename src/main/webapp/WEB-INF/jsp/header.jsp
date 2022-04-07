@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <fmt:setBundle basename="jsp_view" />
+<fmt:setBundle basename="password_reset" var="password_reset"  />
 
 <c:url var="bootstrap_css"
        value="/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css" />

@@ -43,7 +43,8 @@ public class AnnuaireApplication extends SpringBootServletInitializer implements
         var r = new ReloadableResourceBundleMessageSource();
         r.setBasenames(
                 "classpath:jsp_view",
-                "classpath:person"
+                "classpath:person",
+                "classpath:password_reset"
         );
         return r;
     }
