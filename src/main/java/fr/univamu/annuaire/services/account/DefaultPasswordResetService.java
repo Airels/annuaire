@@ -3,19 +3,16 @@ package fr.univamu.annuaire.services.account;
 import fr.univamu.annuaire.exceptions.ExpiredPasswordResetTokenException;
 import fr.univamu.annuaire.exceptions.PasswordResetTokenNotFoundException;
 import fr.univamu.annuaire.model.Person;
-import fr.univamu.annuaire.model.web.NewPasswordResetFormModel;
-import fr.univamu.annuaire.model.web.PasswordResetToken;
-import fr.univamu.annuaire.model.web.PersonResetPassword;
+import fr.univamu.annuaire.model.PasswordResetNewPasswordBean;
+import fr.univamu.annuaire.model.PasswordResetToken;
 import fr.univamu.annuaire.repository.PasswordResetTokenRepository;
 import fr.univamu.annuaire.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
-import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.Date;
 
@@ -39,7 +36,7 @@ public class DefaultPasswordResetService implements PasswordResetService {
     private long resetPasswordExpirationDuration;
 
     @Override
-    public PasswordResetToken generateToken(PersonResetPassword user) {
+    public PasswordResetToken generateToken(Person user) {
         Person person = personRepository.findByEmail(user.getEmail());
         PasswordResetToken oldToken = tokenRepository.findByUser(person);
         if (oldToken != null)
@@ -63,7 +60,7 @@ public class DefaultPasswordResetService implements PasswordResetService {
     }
 
     @Override
-    public void useToken(NewPasswordResetFormModel newPassword) throws PasswordResetTokenNotFoundException, ExpiredPasswordResetTokenException {
+    public void useToken(PasswordResetNewPasswordBean newPassword) throws PasswordResetTokenNotFoundException, ExpiredPasswordResetTokenException {
         String tokenString = newPassword.getToken();
         PasswordResetToken token = getToken(tokenString);
 

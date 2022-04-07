@@ -1,11 +1,11 @@
-package fr.univamu.annuaire.model.web;
+package fr.univamu.annuaire.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class NewPasswordResetFormModel {
+public class PasswordResetNewPasswordBean {
 
     private String password, repeatPassword, token;
 }

@@ -2,7 +2,7 @@ package fr.univamu.annuaire.web;
 
 import fr.univamu.annuaire.model.Group;
 import fr.univamu.annuaire.model.Person;
-import fr.univamu.annuaire.model.web.PersonUpdateFormModel;
+import fr.univamu.annuaire.model.PersonUpdateBean;
 import fr.univamu.annuaire.repository.GroupRepository;
 import fr.univamu.annuaire.repository.PersonRepository;
 import fr.univamu.annuaire.validators.PersonUpdateFormModelValidator;
@@ -62,7 +62,7 @@ public class PersonController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Person not found");
 
         ModelAndView result = new ModelAndView("person_edit");
-        PersonUpdateFormModel person = new PersonUpdateFormModel(personPromise.get());
+        PersonUpdateBean person = new PersonUpdateBean(personPromise.get());
 
         result.addObject("person", person);
 
@@ -71,12 +71,12 @@ public class PersonController {
 
     @PostMapping("/{id}/edit")
     @PreAuthorize("isAuthenticated() && #id == principal.person.id")
-    public String confirmEditProfilte(@PathVariable Long id, @ModelAttribute("person") PersonUpdateFormModel personUpdateFormModel, BindingResult result) {
-        personFormValidator.validate(personUpdateFormModel, result);
+    public String confirmEditProfilte(@PathVariable Long id, @ModelAttribute("person") PersonUpdateBean personUpdateBean, BindingResult result) {
+        personFormValidator.validate(personUpdateBean, result);
         if (result.hasErrors())
             return "person_edit";
 
-        personRepository.save(personUpdateFormModel.toPerson());
+        personRepository.save(personUpdateBean.toPerson());
         return "redirect:/person/" + id;
     }
 }

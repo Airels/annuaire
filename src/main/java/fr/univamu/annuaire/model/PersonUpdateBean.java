@@ -1,4 +1,4 @@
-package fr.univamu.annuaire.model.web;
+package fr.univamu.annuaire.model;
 
 import fr.univamu.annuaire.model.Person;
 import lombok.Data;
@@ -10,11 +10,11 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class PersonUpdateFormModel extends Person {
+public class PersonUpdateBean extends Person {
 
     private String repeatPassword;
 
-    public PersonUpdateFormModel(Person person) {
+    public PersonUpdateBean(Person person) {
         super(
                 person.getId(),
                 person.getEmail(),

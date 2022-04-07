@@ -1,7 +1,7 @@
 package fr.univamu.annuaire.validators;
 
 import fr.univamu.annuaire.model.Person;
-import fr.univamu.annuaire.model.web.PersonUpdateFormModel;
+import fr.univamu.annuaire.model.PersonUpdateBean;
 import fr.univamu.annuaire.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,12 +24,12 @@ public class PersonUpdateFormModelValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return PersonUpdateFormModel.class.isAssignableFrom(clazz);
+        return PersonUpdateBean.class.isAssignableFrom(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        PersonUpdateFormModel person = (PersonUpdateFormModel) target;
+        PersonUpdateBean person = (PersonUpdateBean) target;
         Person referencePerson = personRepository.findById(person.getId()).get();
 
         validateEmail(person, referencePerson, errors);
@@ -37,13 +37,13 @@ public class PersonUpdateFormModelValidator implements Validator {
         validateRoles(person, referencePerson, errors);
     }
 
-    private void validateEmail(PersonUpdateFormModel person, Person referencePerson, Errors errors) {
+    private void validateEmail(PersonUpdateBean person, Person referencePerson, Errors errors) {
         if (!person.getEmail().equals(referencePerson.getEmail())) {
             errors.rejectValue("email", "person.form.error.email");
         }
     }
 
-    private void validatePassword(PersonUpdateFormModel person, Person referencePerson, Errors errors) {
+    private void validatePassword(PersonUpdateBean person, Person referencePerson, Errors errors) {
         if (person.getPassword().isEmpty()) {
             person.setPassword(referencePerson.getPassword());
         } else if (!person.getPassword().equals(person.getRepeatPassword())) {
@@ -55,7 +55,7 @@ public class PersonUpdateFormModelValidator implements Validator {
         }
     }
 
-    private void validateRoles(PersonUpdateFormModel person, Person referencePerson, Errors errors) {
+    private void validateRoles(PersonUpdateBean person, Person referencePerson, Errors errors) {
         if (Collections.disjoint(person.getRoles(), referencePerson.getRoles())) {
             errors.rejectValue("roles", "person.form.error.roles");
         }

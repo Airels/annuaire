@@ -1,4 +1,4 @@
-package fr.univamu.annuaire.model.web;
+package fr.univamu.annuaire.model;
 
 import fr.univamu.annuaire.model.Person;
 import lombok.Data;

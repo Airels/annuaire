@@ -1,6 +1,6 @@
 package fr.univamu.annuaire.exceptions;
 
-import fr.univamu.annuaire.model.web.PasswordResetToken;
+import fr.univamu.annuaire.model.PasswordResetToken;
 
 public class ExpiredPasswordResetTokenException extends Exception {
 

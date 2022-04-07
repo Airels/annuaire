@@ -1,8 +1,8 @@
 package fr.univamu.annuaire.web;
 
-import fr.univamu.annuaire.model.web.NewPasswordResetFormModel;
-import fr.univamu.annuaire.model.web.PasswordResetToken;
-import fr.univamu.annuaire.model.web.PersonResetPassword;
+import fr.univamu.annuaire.model.Person;
+import fr.univamu.annuaire.model.PasswordResetNewPasswordBean;
+import fr.univamu.annuaire.model.PasswordResetToken;
 import fr.univamu.annuaire.services.account.PasswordResetService;
 import fr.univamu.annuaire.validators.NewPasswordResetValidator;
 import fr.univamu.annuaire.validators.PasswordResetValidator;
@@ -32,13 +32,13 @@ public class AccountController {
     private NewPasswordResetValidator newPasswordResetValidator;
 
     @ModelAttribute("user")
-    public PersonResetPassword newPersonResetPassword() {
-        return new PersonResetPassword();
+    public Person newPerson() {
+        return new Person();
     }
 
     @ModelAttribute("newPasswordResetForm")
-    public NewPasswordResetFormModel newPasswordResetForm() {
-        return new NewPasswordResetFormModel();
+    public PasswordResetNewPasswordBean newPasswordResetForm() {
+        return new PasswordResetNewPasswordBean();
     }
 
     @GetMapping("/resetPassword")
@@ -49,7 +49,7 @@ public class AccountController {
 
     @PostMapping("/resetPassword")
     @PreAuthorize("isAnonymous()")
-    public ModelAndView resetPassword(@ModelAttribute("user") PersonResetPassword user, BindingResult result) {
+    public ModelAndView resetPassword(@ModelAttribute("user") Person user, BindingResult result) {
         passwordResetValidator.validate(user, result);
         if (result.hasErrors())
             return new ModelAndView("reset_password_form");
@@ -67,12 +67,12 @@ public class AccountController {
     }
 
     @PostMapping("/resetPasswordConfirm")
-    public String resetPasswordConfirm(@ModelAttribute("newPasswordResetForm") NewPasswordResetFormModel newPasswordResetFormModel, BindingResult result) throws Exception {
-        newPasswordResetValidator.validate(newPasswordResetFormModel, result);
+    public String resetPasswordConfirm(@ModelAttribute("newPasswordResetForm") PasswordResetNewPasswordBean passwordResetNewPasswordBean, BindingResult result) throws Exception {
+        newPasswordResetValidator.validate(passwordResetNewPasswordBean, result);
         if (result.hasErrors())
             return "reset_password_new_password_form";
 
-        passwordResetService.useToken(newPasswordResetFormModel);
+        passwordResetService.useToken(passwordResetNewPasswordBean);
 
         return "reset_password_new_password_success";
     }

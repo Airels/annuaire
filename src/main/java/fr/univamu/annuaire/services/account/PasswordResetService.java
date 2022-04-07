@@ -2,17 +2,17 @@ package fr.univamu.annuaire.services.account;
 
 import fr.univamu.annuaire.exceptions.ExpiredPasswordResetTokenException;
 import fr.univamu.annuaire.exceptions.PasswordResetTokenNotFoundException;
-import fr.univamu.annuaire.model.web.NewPasswordResetFormModel;
-import fr.univamu.annuaire.model.web.PasswordResetToken;
-import fr.univamu.annuaire.model.web.PersonResetPassword;
+import fr.univamu.annuaire.model.Person;
+import fr.univamu.annuaire.model.PasswordResetNewPasswordBean;
+import fr.univamu.annuaire.model.PasswordResetToken;
 
 public interface PasswordResetService {
 
-    PasswordResetToken generateToken(PersonResetPassword user);
+    PasswordResetToken generateToken(Person user);
 
     PasswordResetToken getToken(String token);
 
-    void useToken(NewPasswordResetFormModel newPassword) throws PasswordResetTokenNotFoundException, ExpiredPasswordResetTokenException;
+    void useToken(PasswordResetNewPasswordBean newPassword) throws PasswordResetTokenNotFoundException, ExpiredPasswordResetTokenException;
 
     boolean isTokenValid(String token);
 }
