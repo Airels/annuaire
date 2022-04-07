@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-12 jumbotron">
-            <div class="row mb-4es">
+            <div class="row mb-4">
                 <div class="col-12">
                     <%@ include file="/WEB-INF/jsp/components/global_search_form.jsp"%>
                 </div>
