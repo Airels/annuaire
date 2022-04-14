@@ -39,7 +39,7 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView getGroupById(@PathVariable Long id) {
+    public ModelAndView getPersonById(@PathVariable Long id) {
         Optional<Person> personPromise = personRepository.findById(id);
         if (personPromise.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Person not found");
