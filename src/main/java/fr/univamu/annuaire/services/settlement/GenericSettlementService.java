@@ -9,6 +9,7 @@ import fr.univamu.annuaire.services.logger.LoggerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import java.util.Random;
 import java.util.concurrent.*;
 
 @Service("genericSettlementService")
+@Profile("!dev")
 public class GenericSettlementService implements SettlementService {
 
     @Autowired
