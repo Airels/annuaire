@@ -20,6 +20,7 @@ class PersonRepositoryTest {
 
     @BeforeEach
     public void beforeEach() {
+        groupRepository.deleteAll();
         repository.deleteAll();
 
         p1 = new Person("test", "one", "email@out", "123");

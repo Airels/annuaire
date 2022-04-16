@@ -63,7 +63,5 @@ class GroupRepositoryTest {
 
         List<Group> l2 = repository.findByPersonsContaining(p2);
         Assertions.assertEquals(2, l2.size());
-
-        personRepository.deleteAll();
     }
 }
